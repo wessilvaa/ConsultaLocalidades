@@ -25,9 +25,9 @@ namespace ConsultaDesktopUI.ViewModels
         }
         private async Task LoadAllCEP()
         {
-            //Municipios = new BindableCollection<Municipio>();
             var cepList = await Task.Run(() => _getFromAPI.GetMunicipios());
             _AllMunicipios = new BindableCollection<Municipio>(cepList);
+            NotifyOfPropertyChange(() => IsVisibleAvisoErro);
 
         }
 

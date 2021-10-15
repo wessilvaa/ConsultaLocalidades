@@ -38,7 +38,6 @@ namespace ConsultaDesktopUI
             DisplayRootViewFor<ShellViewModel>();
         }
 
-        //ISSO AQUI TA BUGANDO A APLICAÇÃO...
 
         protected override object GetInstance(Type service, string key)
         {
