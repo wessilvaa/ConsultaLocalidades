@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="ConsultaDesktopUI.Views.SearchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ConsultaDesktopUI.Views"
+             mc:Ignorable="d" Background="White" FontSize="24"
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!--Itens para pesquisa-->
+        <TextBlock Text="Pesquisa de CEP" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 5 5 15"/>
+        <TextBox  x:Name="TextoPesquisa"  Grid.Column="2" Grid.Row="3" Width="300" Height="40
+                  " Margin="20 0 20 0"/>
+        <CheckBox x:Name="checkPesquisaExata"  Grid.Column="3" Grid.Row="3" Margin="5 5 5 5" VerticalAlignment="Center"/>
+        <TextBlock Text="Exata" Grid.Column="4" Grid.Row="3" FontSize="15" VerticalAlignment="Center"/>
+        <Button x:Name="Pesquisar" Content="Pesquisar"  Grid.Column="2" Grid.Row="4" Margin="10 10 10 10"  Width="200" Height="40"/>
+
+        <!--Lista de itens encontrados-->
+        <Border Grid.Row="5" Grid.Column="2" Width="auto" Height="auto">
+            <ListBox x:Name="Municipios" 
+                  MinHeight="200" MinWidth="150"  VerticalAlignment="Top">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="BorderBrush" Value="Black" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate >
+
+                        <StackPanel Orientation="Vertical" >
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Municipo: " FontSize="14"/>
+                                <TextBlock Text="{Binding nome}" FontSize="14"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Microregiao: " FontSize="14"/>
+                                <TextBlock Text="{Binding microrregiao.nome}" FontSize="14"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Mesoregiao: " FontSize="14"/>
+                                <TextBlock Text="{Binding microrregiao.mesorregiao.nome}" FontSize="14"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="UF: " FontSize="14"/>
+                                <TextBlock Text="{Binding microrregiao.mesorregiao.UF.sigla}" FontSize="14"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Estado: " FontSize="14"/>
+                                <TextBlock Text="{Binding microrregiao.mesorregiao.UF.nome}" FontSize="14"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Regiao: " FontSize="14"/>
+                                <TextBlock Text="{Binding microrregiao.mesorregiao.UF.regiao.nome}" FontSize="14"/>
+                            </StackPanel>
+                        </StackPanel>
+
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+        </Border>
+        <!--texto de aviso-->
+        <TextBlock x:Name="AvisoErro"  Grid.Column="2" Grid.Row="6" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="PaleVioletRed" Visibility="{Binding IsVisibleAvisoErro, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Colapse}"/>
+    </Grid>
+</UserControl>
