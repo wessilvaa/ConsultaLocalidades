@@ -31,8 +31,8 @@
         <TextBlock Text="Pesquisa de CEP" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 5 5 15"/>
         <TextBox  x:Name="TextoPesquisa"  Grid.Column="2" Grid.Row="3" Width="300" Height="40
                   " Margin="20 0 20 0"/>
-        <CheckBox x:Name="checkPesquisaExata"  Grid.Column="3" Grid.Row="3" Margin="5 5 5 5" VerticalAlignment="Center"/>
-        <TextBlock Text="Exata" Grid.Column="4" Grid.Row="3" FontSize="15" VerticalAlignment="Center"/>
+        <CheckBox x:Name="checkPesquisaExata"  Grid.Column="4" Grid.Row="3" Margin="5 5 5 5" VerticalAlignment="Center"/>
+        <TextBlock Text="Exata" Grid.Column="5" Grid.Row="3" FontSize="15" VerticalAlignment="Center"/>
         <Button x:Name="Pesquisar" Content="Pesquisar"  Grid.Column="2" Grid.Row="4" Margin="10 10 10 10"  Width="200" Height="40"/>
 
         <!--Lista de itens encontrados-->
@@ -82,6 +82,6 @@
             </ListBox>
         </Border>
         <!--texto de aviso-->
-        <TextBlock x:Name="AvisoErro"  Grid.Column="2" Grid.Row="6" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="PaleVioletRed" Visibility="{Binding IsVisibleAvisoErro, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Colapse}"/>
+        <TextBlock x:Name="AvisoErro"  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="6" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="PaleVioletRed" Visibility="{Binding IsVisibleAvisoErro, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Colapse}"/>
     </Grid>
 </UserControl>

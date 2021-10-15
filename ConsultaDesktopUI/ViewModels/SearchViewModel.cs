@@ -27,6 +27,7 @@ namespace ConsultaDesktopUI.ViewModels
         {
             var cepList = await Task.Run(() => _getFromAPI.GetMunicipios());
             _AllMunicipios = new BindableCollection<Municipio>(cepList);
+            NotifyOfPropertyChange(() => CanPesquisar);
             NotifyOfPropertyChange(() => IsVisibleAvisoErro);
 
         }
@@ -88,6 +89,11 @@ namespace ConsultaDesktopUI.ViewModels
             {
                 var listPesquisa = _search.Pesquisar(_AllMunicipios, TextoPesquisa, checkPesquisaExata).ToList();
                 Municipios = new BindableCollection<Municipio>(listPesquisa);
+                if (Municipios.Count == 0)
+                {
+                    error = "Não encontramos resultados para sua pesquisa.";
+                    NotifyOfPropertyChange(() => IsVisibleAvisoErro);
+                }
             }
             catch(Exception ex)
             {
@@ -99,7 +105,7 @@ namespace ConsultaDesktopUI.ViewModels
         {
             get
             {
-                if (_AllMunicipios?.Count > 0 && TextoPesquisa.Length > 0)
+                if (_AllMunicipios?.Count > 0 && TextoPesquisa?.Length > 0)
                 {
 
                     return true;
@@ -108,7 +114,7 @@ namespace ConsultaDesktopUI.ViewModels
             }
 
         }
-
+        private string error = string.Empty;
         public bool IsVisibleAvisoErro
         {
             get
@@ -125,6 +131,14 @@ namespace ConsultaDesktopUI.ViewModels
                     AvisoErro = "Carregando dados...";
                     return true;
                 }
+                else if (string.IsNullOrEmpty(error) == false)
+                {
+
+                    AvisoErro = error;
+                    error = string.Empty;
+                    return true;
+                }
+                error = string.Empty;
                 return false;
             }
 
