@@ -38,7 +38,7 @@
         <!--Lista de itens encontrados-->
         <Border Grid.Row="5" Grid.Column="2" Width="auto" Height="auto">
             <ListBox x:Name="Municipios" 
-                  MinHeight="200" MinWidth="150"  VerticalAlignment="Top">
+                  MinHeight="50" MinWidth="150"  VerticalAlignment="Top" Visibility="{Binding IsVisibleLista, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Colapse}">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="BorderThickness" Value="2" />

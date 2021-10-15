@@ -41,6 +41,7 @@ namespace ConsultaDesktopUI.ViewModels
                 _municipios = value;
                 NotifyOfPropertyChange(() => Municipios);
                 NotifyOfPropertyChange(() => CanPesquisar);
+                NotifyOfPropertyChange(() => IsVisibleLista);
             }
         }
         private string _textoPesquisa;
@@ -139,6 +140,18 @@ namespace ConsultaDesktopUI.ViewModels
                     return true;
                 }
                 error = string.Empty;
+                return false;
+            }
+
+        }
+        public bool IsVisibleLista
+        {
+            get
+            {
+                if (Municipios?.Count > 0 )
+                {
+                    return true;
+                }
                 return false;
             }
 
